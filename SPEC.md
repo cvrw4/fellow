@@ -129,6 +129,12 @@ Library and Action Items are neighboring destinations. Their pages are out of sc
 - **Notepad** — “Anything else to write down?”
 - **Previous meetings in this series** — recap cards with title, relative time, summary, and thumbnail (example: yesterday; Feb 8)
 
+The current meeting view also switches between **Agenda**, **AI Note**, and **Transcript**. On the AI note, these three stay on the page, and they belong to this meeting only:
+
+- **Summary** — the short account of what happened.
+- **Human-level notes** — the fuller note for this meeting, written the way a person would write it, with more context than the room had in the moment.
+- **Suggested action items** — proposed next steps, each tied to a moment in the recording. A suggestion is not a commitment until someone accepts it. Ask Fellow can be opened from this list.
+
 ### Ask Fellow (right panel)
 
 - Panel open / history / close
