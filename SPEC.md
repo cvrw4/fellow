@@ -251,7 +251,7 @@ Judge the file the way a Notion or Figma design would be judged:
 
 **Skills.** Skills are solutions and templates for a meeting. Some are built in. Others come from the community. They work the way Granola’s Recipes do: a ready way into this meeting, instead of a blank prompt.
 
-**Home.** The full calendar is too much to scan for what matters now. Home is the daily agenda: things to do, follow ups, recent chats with Atlas, and updates. A meeting is the quiet room, for the note and for a deeper look at that meeting with Atlas. The calendar holds the whole schedule, including scheduling a meeting. Atlas has its own view for chats and insights, each one tied to a company or a meeting.
+**Home.** The full calendar is too much to scan for what matters now. The left panel is Home, Meetings, Calendar, and Atlas. Home is the daily agenda: things to do, follow ups, and updates. Meetings groups the work by client, company, or contact. A meeting is the quiet room, for the note and for a deeper look at that meeting with Atlas. The calendar holds the whole schedule, including scheduling a meeting. Atlas is questions and insights, each one tied to a company or a meeting. There is no chat list.
 
 **Atlas.** Ask Fellow becomes Atlas, the intelligence inside Fellow. Ask Atlas can prepare notes. Atlas can send a notification. Fellow and Atlas grow alongside each other.
 
