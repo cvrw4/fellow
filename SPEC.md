@@ -241,7 +241,23 @@ Judge the file the way a Notion or Figma design would be judged:
 
 ---
 
-## 11. Submission checklist
+## 11. Decisions
+
+**Type.** The page uses the system font, so the face changes with the operating system. Apple uses SF Pro. Windows uses Segoe UI. Android and Chrome OS use Roboto. Ubuntu uses Ubuntu, GNOME uses Cantarell, KDE uses Oxygen, and other Linux uses Noto Sans. Helvetica Neue and Arial are the fallback. Five styles carry every face: Meta, Row, Body, Section, and Title, from 12 to 22. Regular is for reading, medium for controls and labels, semibold for the meeting title. A new size has to do a job these five do not.
+
+**Color.** Neutrals carry the layout: canvas, surface, ink, and a hairline. Blue is selection and the one primary action. Red, green, and amber are attention, confirmation, and caution. Recording is a light green of its own. Atlas is a gold-to-violet gradient, with a violet wash and a violet line. Dark uses the same token names. The library stays small on purpose.
+
+**Icons.** The set is the Fluent pack. It has more than 10,000 icons, so the page stays in one family. Fluent also includes high-contrast options. Those are an accessibility setting and a personalization choice.
+
+**Skills.** Skills are solutions and templates for a meeting. Some are built in. Others come from the community. They work the way Granola’s Recipes do: a ready way into this meeting, instead of a blank prompt.
+
+**Home.** The full calendar is too much to scan for what matters now. Home is the daily agenda: things to do, follow ups, recent chats with Atlas, and updates. A meeting is the quiet room, for the note and for a deeper look at that meeting with Atlas. The calendar holds the whole schedule, including scheduling a meeting. Atlas has its own view for chats and insights, each one tied to a company or a meeting.
+
+**Atlas.** Ask Fellow becomes Atlas, the intelligence inside Fellow. Ask Atlas can prepare notes. Atlas can send a notification. Fellow and Atlas grow alongside each other.
+
+---
+
+## 12. Submission checklist
 
 - [ ] High-fidelity meeting page in Figma (or an equivalent prototype)
 - [ ] Capabilities from section 5 accounted for — moved or disclosed, never deleted
