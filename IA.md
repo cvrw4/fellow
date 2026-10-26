@@ -88,6 +88,8 @@ Updates                 Opens the note          Meetings only           This com
 
 **A meeting**, once open, is where the note is written. Atlas, opened from here, goes deeper on this meeting. The room stays quiet. The schedule is not sitting beside the note.
 
+The rail also has destinations: Library, Action Items, **Private notes**, and More. Destinations are not Places. Home, Meetings, Calendar, and Atlas stay the four Places. Private notes is the home for notes that span companies, the way Action Items is the home for commitments. Opening it from a meeting starts on that meeting, then lets the person widen to the company or to all notes. The meeting itself still has a Private toggle, so writing one does not require leaving the room. Same object as in [OOUX.md](OOUX.md). Two doors.
+
 ---
 
 ## Meetings
@@ -167,8 +169,8 @@ The five jobs from the object model, and where they start. The meeting page stil
 | Job | Starts on | Then |
 | --- | --- | --- |
 | Walk in ready | **Home**, for what is mine today. **Meetings**, for what this company still has open | The Meeting, with prior commitments already the talking points |
-| Stay in the conversation | The Meeting | Meetings, only to see that this one is recording |
-| Know what is on the record | The Meeting | The company’s name is the audience hint; the page still states who can see it |
+| Stay in the conversation | The Meeting | Meetings, only to see that this one is recording. Private notes, only to write a thought that must not travel |
+| Know what is on the record | The Meeting | The company’s name is the audience hint; the page still states who can see it. A Private note is off the record on purpose |
 | Leave with owners | The Meeting | The new commitment shows on Home, labeled with this relationship, and on the next meeting with this company only |
 | Ask without leaving | The Meeting, or Atlas | Never across companies. A question asked from Helios cannot answer from Northbridge |
 
@@ -179,5 +181,5 @@ The five jobs from the object model, and where they start. The meeting page stil
 - **Team** is the account. The user's name belongs to it. The Team is their company, organization, or headquarters, on an Individual or Enterprise plan. A company in Meetings is the other party.
 - **Meeting** stays the page. Client, company, and contact are how meetings are grouped, not a replacement for the meeting object.
 - **Series** stays a relationship between meetings. Under a company it keeps diligence with diligence. It is the group only when there is no external party.
-- **Library** and the global **Action Items** list stay other views of the same objects, one step away, out of scope as screens.
+- **Library**, the global **Action Items** list, and **Private notes** stay other views of the same objects, one step away, out of scope as screens. Private notes is a destination, not a fifth Place.
 - **Person** stays an attendee, an owner, or an audience. A contact who is the party the work is about is the row. A contact who was simply invited is not.

@@ -15,11 +15,12 @@ The chain “user → meeting → transcription → notes → to-do lists” mix
 | **Meeting** | The page. A scheduled conversation with a purpose, a time, an audience, and a record. | A transcript, a note, or a calendar row. The calendar only points at it. |
 | **Person** | Someone who attends, owns work, or is allowed to see the record. Includes the current user. | A “user” object the page is about. The page is about the meeting. |
 | **Talking point** | One thing the room intended to discuss. | A note, and not an action item. |
-| **Note** | What was written or generated: the notepad, and the AI note once it exists. Decisions live here until they are their own object. | The transcript. |
+| **Note** | What was written or generated: the notepad, and the AI note once it exists. Decisions live here until they are their own object. | The transcript, and not a private note. |
+| **Private note** | A note only the current Person can see. It may point at one Meeting, one company, or several. | The shared Note. It never becomes a Talking point, and it never enters the series loop. |
 | **Action item** | One commitment: owner, scope, deadline, status. | A to-do list. The list is just the action items on this meeting. |
 | **Transcript** | The evidence of what was said, tied to time and speaker. | The product. It can be deleted while the note and the commitments remain. |
 
-**Recording** is a state of the Meeting, not its own pillar. It has actions (start, pause, resume, stop), and it is what produces the Transcript. **Series** is a relationship between Meetings, not a seventh object. **Ask Fellow** is an action on the Meeting that reads the other objects. It does not own content of its own.
+**Recording** is a state of the Meeting, not its own pillar. It has actions (start, pause, resume, stop), and it is what produces the Transcript. **Series** is a relationship between Meetings, not a seventh object. **Company** is a grouping from [IA.md](IA.md), not a pillar: Meetings already sit under a client, a company, or a contact. A Private note may point at that grouping. **Ask Fellow** is an action on the Meeting that reads the other objects. It does not own content of its own. **Private notes** is a mode of the Meeting, and a destination in the rail. Same object, two doors.
 
 A decision is the durable part of the Note: what was decided, why, and who approved it. The page should treat it as a block inside the Note that survives after the Transcript is gone. Making Decision its own pillar is a later product move, called out in [BUSINESS.md](BUSINESS.md). This model keeps it inside Note so the page does not grow a new section.
 
@@ -41,8 +42,9 @@ The container. Opening a meeting is opening this object.
 | See who can view the recap | Person |
 | Ask Fellow, scoped to this meeting | Talking point, Note, Action item, prior Meeting, Transcript |
 | Jump to the previous meeting in the series | Meeting |
+| Open private notes | Private note, Person |
 
-**Relationships:** has many Talking points, one working Note, many Action items, zero or one Transcript, many People, and zero or more prior Meetings in the same series.
+**Relationships:** has many Talking points, one working Note, many Action items, zero or one Transcript, many People, and zero or more prior Meetings in the same series. A Meeting does not own Private notes. It may be a target of them.
 
 ---
 
@@ -50,9 +52,9 @@ The container. Opening a meeting is opening this object.
 
 **Attributes:** name, avatar, role in this meeting (attendee, owner, absent), whether they can see the record.
 
-**Actions on this page:** see who is here, assign an Action item to someone, share or restrict the Meeting, mention someone in Ask Fellow.
+**Actions on this page:** see who is here, assign an Action item to someone, share or restrict the Meeting, mention someone in Ask Fellow, write or open a Private note.
 
-**Relationships:** attends a Meeting, owns Action items, authors parts of the Note, is named in the Transcript. Access is a relationship between a Person and a Meeting, not a setting buried elsewhere.
+**Relationships:** attends a Meeting, owns Action items, authors parts of the Note, owns Private notes, is named in the Transcript. Access is a relationship between a Person and a Meeting, not a setting buried elsewhere. A Private note is owned by this Person only.
 
 ---
 
@@ -73,6 +75,22 @@ The container. Opening a meeting is opening this object.
 **Actions:** write, generate from the Transcript, edit, copy, draft a follow-up (email or update). Generating reads the Transcript and should not invent Action items that nobody confirms.
 
 **Relationships:** belongs to one Meeting. Cites the Transcript while the Transcript exists. Outlives the Transcript under retention. Feeds the next Meeting in the series.
+
+---
+
+## Private note
+
+Owned by the current Person. The shared Note is the deal-team record. This is the thought that must not travel.
+
+**Attributes:** body, owner (the current Person), optional targets (one Meeting, one company, several, or none).
+
+**Actions:** write, edit, attach or detach a Meeting, attach or detach a company, open from this Meeting, open from the Private notes destination.
+
+**Relationships:** owned by one Person. May point at a Meeting, at the company that Meeting sits under, at several of either, or at none. It does not belong to the Meeting. It does not cite the Transcript into the shared record. It does not become a Talking point on the next Meeting.
+
+A Private note about Helios diligence can stay on that call, widen to Helios, or sit next to a Northbridge note. The shared Note cannot do that. Pause is still how speech leaves the Transcript. A Private note is how a judgment never enters the Note.
+
+Two doors, one object. On the meeting, a Private toggle switches the room to this Person’s notes, starting on this Meeting. In the rail, Private notes is the destination for notes that span companies, the way Action Items is the destination for commitments. The destination is another view of the same objects, not a fifth Place.
 
 ---
 
@@ -102,14 +120,15 @@ A suggested item is not a commitment. Confirming it is the action that matters.
 
 ```
 Person ──attends / can see──▶ Meeting ──in series──▶ Meeting
-                                │
-                                ├── has ▶ Talking point ──may become──▶ Action item
-                                ├── has ▶ Note ──cites──▶ Transcript
-                                ├── has ▶ Action item ──owned by──▶ Person
-                                └── recording produces ▶ Transcript
+  │                            │
+  │ owns                       ├── has ▶ Talking point ──may become──▶ Action item
+  ▼                            ├── has ▶ Note ──cites──▶ Transcript
+Private note                   ├── has ▶ Action item ──owned by──▶ Person
+  ├── may point at Meeting     └── recording produces ▶ Transcript
+  └── may point at company
 ```
 
-The only loop that makes Fellow different from a notetaker: an open **Action item** and the **Note** from the last **Meeting** become the **Talking points** of the next one. The Transcript is an input to that loop, then drops out when policy deletes it.
+The only loop that makes Fellow different from a notetaker: an open **Action item** and the **Note** from the last **Meeting** become the **Talking points** of the next one. The Transcript is an input to that loop, then drops out when policy deletes it. A Private note never enters that loop.
 
 ---
 
@@ -120,10 +139,10 @@ Everything else can be one step away. These are the actions the desktop meeting 
 | Moment | On the page | One step away |
 | --- | --- | --- |
 | Before | Prior Meeting’s open Action items and last decisions, as Talking points. Who can see this. Whether it will be recorded. | Full Transcript of last time. Library. |
-| During | Write the Note. Check a Talking point. Capture a confirmed Action item. Pause recording. | Transcript playback. Ask Fellow history. |
+| During | Write the Note. Toggle to a Private note. Check a Talking point. Capture a confirmed Action item. Pause recording. | Transcript playback. Ask Fellow history. Private notes that span companies. |
 | After | Read the Note, confirm Action items, draft the follow-up, see the audience. | Transcript, redaction, the global Action Items destination. |
 
-Search, notifications, the Library, and the standalone Action Items page stay in the chrome. They are other views of the same objects, and they are out of scope as screens.
+Search, notifications, the Library, the standalone Action Items page, and the Private notes destination stay in the chrome. They are other views of the same objects, and they are out of scope as screens.
 
 ---
 
@@ -166,10 +185,17 @@ When I am missing context, I want to ask about this meeting and its series and g
 Objects: Meeting, and whatever the question needs (Note, Action item, prior Meeting, Transcript).  
 The answer is scoped to this Meeting and this Person’s access. A general chat is a different product.
 
+### 6. Keep a thought off the shared note
+
+When I have a judgment I will not put on the deal-team record, I want to write it where only I can see it, and attach it to this meeting, this company, or several, so it does not travel into the next room.
+
+Objects: Private note, Person, Meeting.  
+The page fails if private writing looks like the shared notepad, or if a note that spans Helios and Northbridge has no home.
+
 ---
 
 ## What the model leaves out on purpose
 
 - Configuring org-wide retention, SSO, and information barriers. The page shows the result of those policies on this Meeting.
-- The Library and the global Action Items list. Same objects, different views, other pages.
+- The Library, the global Action Items list, and the Private notes destination. Same objects, different views, other pages. The meeting still has to offer the Private toggle.
 - Decision as a standalone object, scheduling, and CRM write-back as their own screens. They show up here only as a block in the Note, a video link, and a confirmed Action item.
